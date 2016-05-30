@@ -15,13 +15,13 @@ Import-Module Azure -Verbose
 # Authenticate to your Azure account
 Login-AzureRmAccount
 
-# Adjust the 'yournamehere' part of these three strings to
+# Adjust the 'mcsrktestlab' part of these three strings to
 # something unique for you. Leave the last two characters in each.
-$URI       = 'https://raw.githubusercontent.com/GoateePFE/AzureRM/master/active-directory-new-domain-with-data/azuredeploy.json'
+$URI       = 'https://raw.githubusercontent.com/rkyttle/AzureRM/master/ActiveDirectoryLab/azuredeploy.json'
 $Location  = 'East US'
-$rgname    = 'yournamehererg'
-$saname    = 'yournameheresa'     # Lowercase required
-$addnsName = 'yournameheread'     # Lowercase required
+$rgname    = 'mcsrktestlabrg'
+$saname    = 'mcsrktestlabsa'     # Lowercase required
+$addnsName = 'mcsrktestlabad'     # Lowercase required
 
 # Check that the public dns $addnsName is available
 if (Test-AzureRmDnsAvailability -DomainNameLabel $addnsName -Location $Location)
@@ -34,7 +34,7 @@ New-AzureRmResourceGroup -Name $rgname -Location $Location
 $MyParams = @{
     newStorageAccountName = $saname
     location              = 'East US'
-    domainName            = 'alpineskihouse.com'
+    domainName            = 'ad.mcsrktestlab.com'
     addnsName             = $addnsName
    }
 
@@ -43,7 +43,7 @@ $SplatParams = @{
     TemplateUri             = $URI 
     ResourceGroupName       = $rgname 
     TemplateParameterObject = $MyParams
-    Name                    = 'AlpineSkiHouseForest'
+    Name                    = 'mcsrktestlab'
    }
 
 # This takes ~30 minutes
