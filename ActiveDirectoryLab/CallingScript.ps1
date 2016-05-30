@@ -7,11 +7,13 @@ Install-Module Azure -Force -Verbose
 # Takes a while to install 28 modules
 Install-Module AzureRM -Force -Verbose
 
-# Import AzureRM modules for the given version manifest in the AzureRM module
-Import-AzureRM -Verbose
+# Close the ISE and relaunch
 
 # Import Azure Service Management module
 Import-Module Azure -Verbose
+
+# Import AzureRM modules for the given version manifest in the AzureRM module
+Import-Module AzureRM -Verbose
 
 # Authenticate to your Azure account
 Login-AzureRmAccount
