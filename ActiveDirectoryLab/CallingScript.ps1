@@ -18,13 +18,16 @@ Import-Module AzureRM -Verbose
 # Authenticate to your Azure account
 Login-AzureRmAccount
 
+Get-AzureRmSubscription
+Get-AzureRmSubscription –SubscriptionName "Microsoft Azure Internal Consumption" | Select-AzureRmSubscription
+
 # Adjust the 'mcsrktestlab' part of these three strings to
 # something unique for you. Leave the last two characters in each.
 $URI       = 'https://raw.githubusercontent.com/rkyttle/AzureRM/master/ActiveDirectoryLab/azuredeploy.json'
 $Location  = 'East US'
 $rgname    = 'mcsrktestlabrg'
 $saname    = 'mcsrktestlabsa'     # Lowercase required
-$addnsName = 'mcsrktestlabad'     # Lowercase required
+$addnsName = 'mcsrktestlab'     # Lowercase required
 
 # Check that the public dns $addnsName is available
 if (Test-AzureRmDnsAvailability -DomainNameLabel $addnsName -Location $Location)
